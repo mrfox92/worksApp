@@ -1,0 +1,21 @@
+
+<div class="accordion" id="accordionWorks">
+    <div class="card animated fast fadeIn" *ngFor="let cliente of clientes">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + cliente._id" aria-expanded="true" [attr.aria-controls]="'collapse' + cliente._id">
+                <i class="fas fa-user"></i> {{ cliente.nombre | titlecase }}
+            </button>
+        </h2>
+      </div>
+  
+      <div [attr.id]="'collapse' + cliente._id" class="collapse" aria-labelledby="headingOne" data-parent="#accordionWorks">
+        <div class="card-body">
+          
+          <button type="button" class="btn btn-success m-2">Nuevo Trabajo <i class="fas fa-folder-plus"></i></button>
+          <button type="button" class="btn btn-primary m-2" (click)="listarTrabajos( cliente )">Ver Trabajos <i class="far fa-eye"></i></button>
+          <button type="button" class="btn btn-danger m-2" (click)="borrarCliente( cliente )">Borrar Cliente <i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>

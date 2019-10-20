@@ -1,0 +1,26 @@
+
+<div class="container-fluid my-4">
+    <div class="row d-flex">
+        <div class="col-md-6">
+            <form #forma="ngForm" (ngSubmit)="createWork( forma )" class="animated fast fadeIn">
+                <div class="form-group">
+                    <label for="inputTitle">Título</label>
+                    <input name="title" [(ngModel)]="nuevoTrabajo.title" type="text" class="form-control" id="inputTitle" placeholder="Ingrese título trabajo" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescription">Descripción</label>
+                    <input name="description" [(ngModel)]="nuevoTrabajo.description" type="text" class="form-control" id="inputDescription" placeholder="Ingrese descripción" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Observación <small class="text-muted">(Opcional)</small></label>
+                    <input name="annotation" [(ngModel)]="nuevoTrabajo.annotation" type="text" class="form-control" id="inputAnnotation" placeholder="Ingrese Observación">
+                </div>
+                <div class="form-group">
+                    <label for="inputTotal">Total</label>
+                    <input name="total" [(ngModel)]="nuevoTrabajo.total" type="number" class="form-control" id="inputTotal" min="0" placeholder="Ingrese total" required>
+                </div>
+                <button [disabled]="!forma.valid" type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>

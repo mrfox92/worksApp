@@ -1,0 +1,46 @@
+<div class="container-fluid" *ngIf="trabajo">
+    <nav aria-label="breadcrumb" class="animated fast fadeIn">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/inicio">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ trabajo.title | titlecase }}</li>
+        </ol>
+      </nav>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <form #f="ngForm" (ngSubmit)="createDetail( f )">
+                <div class="form-group">
+                    <label for="inputTitle">Título</label>
+                    <input class="form-control" name="title" [(ngModel)]="nuevoDetalle.title" type="text" id="inputTitle" placeholder="Ingrese título trabajo" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescription">Descripción</label>
+                    <input name="description" [(ngModel)]="nuevoDetalle.description" type="text" class="form-control" id="inputDescription" placeholder="Ingrese descripción" required>
+                </div>
+                <button [disabled]="!f.valid" type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="container-fluid text-center animated fast fadeIn" *ngIf="detalleTrabajo.length === 0">
+                <div class="alert alert-info" role="alert">
+                    <strong>
+                        No hay actividades registradas de momento
+                    </strong>
+                </div>
+            </div>
+            <div class="container-fluid animated fast fadeIn" *ngIf="detalleTrabajo.length > 0">
+                <ul class="list-group" *ngFor="let detalle of detalleTrabajo">
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" [checked]="detalle.status" type="checkbox" [value]="detalle.status" [id]="detalle._id" (change)="changeStatus( $event, detalle._id )">
+                            <label class="form-check-label" [for]="detalle._id">
+                                {{ detalle.title | titlecase }}
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

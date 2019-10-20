@@ -1,0 +1,43 @@
+<div class="container-fluid my-2">
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCliente"><i class="fas fa-folder"></i> Agregar Cliente</button>
+        </div>
+    </div>
+    <div class="row my-4">
+      <div class="col-md-12">
+        <app-lista-clientes (cargarClientes)="removeCliente( $event )" [clientes]="clientes"></app-lista-clientes>
+      </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div #modalCliente class="modal fade" id="modalCliente" tabindex="-1" role="dialog" aria-labelledby="modalClienteLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalClienteLabel">Agregar nuevo cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #forma="ngForm" (ngSubmit)="createCliente( forma )">
+              <div class="form-group">
+                  <label for="inputNombre">Nombre</label>
+                  <input class="form-control" type="text" name="nombre" [(ngModel)]="nuevoCliente.nombre" id="inputNombre" placeholder="ingrese nombre cliente" required>
+              </div>
+              <div class="form-group">
+                <label for="inputNumContacto">N° Contacto</label>
+                <input class="form-control" type="number" name="numContacto" [(ngModel)]="nuevoCliente.numContacto" id="inputNumContacto" placeholder="ingrese n° contacto" required>
+            </div>
+            <button type="submit" [disabled]="!forma.valid" class="btn btn-primary">Guardar</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

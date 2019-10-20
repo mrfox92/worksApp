@@ -1,0 +1,16 @@
+<div class="container-fluid my-2">
+    <div class="row" *ngIf="trabajosPorCliente.length === 0">
+        <div class="col-md-12">
+            <div class="alert alert-primary text-center" role="alert">
+                <strong class="text-capitalize">Sin trabajos agregados</strong>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="trabajosPorCliente.length !== 0">
+        <div class="col-md-12">
+            <ul class="list-group" *ngFor="let trabajo of trabajosPorCliente">
+                <li class="list-group-item">{{ trabajo.title }}</li>
+            </ul>
+        </div>
+    </div>
+</div>

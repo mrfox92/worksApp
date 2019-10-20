@@ -1,0 +1,26 @@
+
+<div class="accordion" id="accordionWorks">
+  <div class="card animated fast fadeIn" *ngFor="let trabajo of trabajos">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+          <span class="float-right text-muted text-date">{{ trabajo.createdAt | date:'dd-M-yy' }}</span>
+          <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + trabajo._id" aria-expanded="true" [attr.aria-controls]="'collapse' + trabajo._id">
+              {{ trabajo.title | titlecase }}
+          </button>
+      </h2>
+    </div>
+
+    <div [attr.id]="'collapse' + trabajo._id" class="collapse" aria-labelledby="headingOne" data-parent="#accordionWorks">
+      <div class="card-body">
+        <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#exampleModal" (click)="getWorkModal( trabajo )">
+          Ver
+        </button>
+        <button type="button" class="btn btn-success m-2" (click)="print( trabajo._id )">Imprimir</button>
+        <button type="button" class="btn btn-info m-2" (click)="verDetalle( trabajo._id )">Ver detalle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- modal -->
+  <app-modal [modalTrabajo]="modalTrabajo"></app-modal>
